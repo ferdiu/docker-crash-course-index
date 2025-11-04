@@ -1,0 +1,22 @@
+services:
+  app1:
+    build: ./app
+    environment:
+      - APP_MESSAGE=Hello from App 1!
+    expose:
+      - "8000"
+
+  app2:
+    build: ./app
+    environment:
+      - APP_MESSAGE=Hello from App 2!
+    expose:
+      - "8000"
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - app1
+      - app2
